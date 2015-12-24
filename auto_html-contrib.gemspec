@@ -2,7 +2,7 @@
 
 Gem::Specification.new do |spec|
   spec.name          = 'auto_html-contrib'
-  spec.version       = '0.1.0'
+  spec.version       = '0.1.1'
   spec.authors       = ['Dejan Simic']
   spec.email         = ['desimic@gmail.com']
 
