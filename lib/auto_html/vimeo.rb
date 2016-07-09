@@ -15,7 +15,9 @@ module AutoHtml
       text.gsub(vimeo_pattern) do
         vimeo_id = Regexp.last_match(2)
         src = src_url(vimeo_id)
-        tag(:iframe, { src: src }.merge(iframe_attributes)) { '' }
+        tag(:div, class: 'video vimeo') do
+          tag(:iframe, { src: src }.merge(iframe_attributes)) { '' }
+        end
       end
     end
 
