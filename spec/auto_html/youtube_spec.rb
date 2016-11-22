@@ -45,4 +45,10 @@ RSpec.describe AutoHtml::YouTube do
     result = subject.call('www.youtube.com/watch?v=t7NdBIA4zJg')
     expect(result).to eq '<div class="video youtube"><iframe width="420" height="315" src="//www.youtube.com/embed/t7NdBIA4zJg" frameborder="0" allowfullscreen="yes"></iframe></div>'
   end
+
+  it 'transforms url with hide_related options' do
+    filter = described_class.new(hide_related: true)
+    result = filter.call('www.youtube.com/watch?v=t7NdBIA4zJg')
+    expect(result).to eq '<div class="video youtube"><iframe width="420" height="315" src="//www.youtube.com/embed/t7NdBIA4zJg?rel=0" frameborder="0" allowfullscreen="yes"></iframe></div>'
+  end
 end

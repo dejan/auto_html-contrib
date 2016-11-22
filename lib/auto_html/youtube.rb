@@ -5,9 +5,10 @@ module AutoHtml
   class YouTube
     include TagHelper
 
-    def initialize(width: 420, height: 315)
+    def initialize(width: 420, height: 315, hide_related: false)
       @width = width
       @height = height
+      @hide_related = hide_related
     end
 
     def call(text)
@@ -37,6 +38,9 @@ module AutoHtml
 
     def iframe_attributes(youtube_id)
       src = "//www.youtube.com/embed/#{youtube_id}"
+      params = []
+      params << "rel=0" if @hide_related
+      src += "?#{params.join '&'}" unless params.empty?
       {
         width: @width,
         height: @height,
