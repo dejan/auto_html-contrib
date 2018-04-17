@@ -24,7 +24,7 @@ module AutoHtml
     private
 
     def vimeo_pattern
-      @vimeo_pattern ||= %r{https?://(www.)?vimeo\.com/([A-Za-z0-9._%-]*)((\?|#)\S+)?}
+      @vimeo_pattern ||= %r{(?<!href=["'])https?://(www.)?vimeo\.com/([A-Za-z0-9._%-]*)((\?|#)\S+)?}
     end
 
     def src_url(vimeo_id)

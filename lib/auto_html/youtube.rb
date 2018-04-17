@@ -12,9 +12,15 @@ module AutoHtml
 
     def call(text)
       text.gsub(youtube_pattern) do
-        youtube_id = Regexp.last_match(4)
-        tag(:div, class: 'video youtube') do
-          tag(:iframe, iframe_attributes(youtube_id)) { '' }
+        no_href_attr = Regexp.last_match(1).nil?
+        if no_href_attr
+          youtube_id = Regexp.last_match(5)
+          tag(:div, class: 'video youtube') do
+            tag(:iframe, iframe_attributes(youtube_id)) { '' }
+          end
+        else
+          # No transformation if matches a href attr
+          Regexp.last_match(0)
         end
       end
     end
@@ -24,6 +30,7 @@ module AutoHtml
     def youtube_pattern
       @youtube_pattern ||=
         %r{
+          (href=['"])?
           (https?://)?
           (www.)?
           (
