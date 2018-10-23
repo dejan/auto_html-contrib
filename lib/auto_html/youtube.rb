@@ -17,7 +17,9 @@ module AutoHtml
         if no_href_attr
           youtube_id = Regexp.last_match(5)
           tag(:div, class: 'video youtube') do
-            tag(:iframe, iframe_attributes(youtube_id)) { '' }
+            tag(:div, class: 'responsive-embed') do
+              tag(:iframe, iframe_attributes(youtube_id)) { '' }
+            end
           end
         else
           # No transformation if matches a href attr

@@ -16,7 +16,9 @@ module AutoHtml
       text.gsub(vimeo_pattern) do
         vimeo_id = Regexp.last_match(2)
         tag(:div, class: 'video vimeo') do
-          tag(:iframe, iframe_attributes(vimeo_id)) { '' }
+          tag(:div, class: 'responsive-embed') do
+            tag(:iframe, iframe_attributes(vimeo_id)) { '' }
+          end
         end
       end
     end
