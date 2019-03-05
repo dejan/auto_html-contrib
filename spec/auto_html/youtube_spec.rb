@@ -45,4 +45,9 @@ RSpec.describe AutoHtml::YouTube do
     result = subject.call('www.youtube.com/watch?v=t7NdBIA4zJg')
     expect(result).to eq '<div class="video youtube"><iframe width="420" height="315" src="//www.youtube.com/embed/t7NdBIA4zJg" frameborder="0" allowfullscreen="yes"></iframe></div>'
   end
+
+  it 'does not transform url inside an anchor tag' do
+    result = subject.call('<a href="http://www.youtube.com/watch?v=t7NdBIA4zJg">youtube</a>')
+    expect(result).to eq '<a href="http://www.youtube.com/watch?v=t7NdBIA4zJg">youtube</a>'
+  end
 end
